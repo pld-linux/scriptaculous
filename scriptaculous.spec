@@ -6,6 +6,8 @@ License:	MIT
 Group:		Applications/WWW
 Source0:	http://script.aculo.us/dist/%{name}-js-%{version}.tar.bz2
 # Source0-md5:	10aa518e3b44f5a2a55f2bc8caadcd62
+Source1:	apache.conf
+Source2:	lighttpd.conf
 URL:		http://script.aculo.us/
 BuildRequires:	sed >= 4.0
 Requires:	prototype >= 1.6.0.3
@@ -24,27 +26,14 @@ developers to easily add visual and ajax effects to projects.
 %prep
 %setup -q -n %{name}-js-%{version}
 
-cat <<'EOF' > apache.conf
-Alias /%{name}/ %{_appdir}
-<Directory %{_appdir}/>
-	Allow from all
-</Directory>
-EOF
-
-cat > lighttpd.conf <<'EOF'
-alias.url += (
-    "/%{name}/" => "%{_appdir}/",
-)
-EOF
-
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_appdir},%{_sysconfdir}}
 cp -a src/*.js $RPM_BUILD_ROOT%{_appdir}
 
-cp -a apache.conf $RPM_BUILD_ROOT%{_sysconfdir}/apache.conf
-cp -a apache.conf $RPM_BUILD_ROOT%{_sysconfdir}/httpd.conf
-cp -a lighttpd.conf $RPM_BUILD_ROOT%{_sysconfdir}/lighttpd.conf
+cp -a %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/apache.conf
+cp -a %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/httpd.conf
+cp -a %{SOURCE2} $RPM_BUILD_ROOT%{_sysconfdir}/lighttpd.conf
 
 %clean
 rm -rf $RPM_BUILD_ROOT
