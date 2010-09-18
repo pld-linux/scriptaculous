@@ -1,11 +1,12 @@
 Summary:	Open-Source JavaScript framework for visual effects and interface behaviours
+Summary(pl.UTF-8):	Oparty na otwartych źródłach szkielet JavaScript dla wizualnych efektów i zachowania interfejsu
 Name:		scriptaculous
-Version:	1.8.2
+Version:	1.8.3
 Release:	0.1
 License:	MIT
 Group:		Applications/WWW
 Source0:	http://script.aculo.us/dist/%{name}-js-%{version}.tar.bz2
-# Source0-md5:	10aa518e3b44f5a2a55f2bc8caadcd62
+# Source0-md5:	47122c84cdd2f5eb9b5b9cb84f5d2242
 Source1:	apache.conf
 Source2:	lighttpd.conf
 URL:		http://script.aculo.us/
@@ -22,6 +23,11 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 A collection of Web 2.0 style JavaScript libraries that help web
 developers to easily add visual and ajax effects to projects.
+
+%description -l pl.UTF-8
+Kolekcja styli Web 2.0 dlabibliotek JavaScriptowych, które pomagają
+twórcom stron aby łatwiej dodawać wizualne i ajaxowe efekty do
+projektów.
 
 %prep
 %setup -q -n %{name}-js-%{version}
